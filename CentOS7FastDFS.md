@@ -74,7 +74,7 @@ vi tracker.conf
 重点关注如下配置：
 disabled=false #默认开启 
 port=22122 #默认端口号 
-base_path=/usr/yong.cao/dev/fastdfs/fastdfs_tracker #我刚刚创建的目录 
+base_path=/data/fastdfs/tracker #我刚刚创建的目录 
 http.server_port=8080 #默认端口是8080
 3、启动tracker
 service fdfs_trackerd start
@@ -376,6 +376,10 @@ url_have_group_name=true #文件 url 中是否有 group 名
 store_path0=/data/fastdfs/storage   #存储路径
 group_count = 3 #设置组的个数，事实上这次只使用了group1
 
+
+创建M00至storage存储目录的符号连接
+ln  -s  /data/fastdfs/storage/data/ /data/fastdfs/storage/data/M00
+
 注意：
 如果url_have_group_name=false的情况下，会报如下错误：
 ../common/fdfs_global.c, line: 52, the format of filename "group1/M00/00/00/wKgDLVtMOWaAAYuNAAAatRA7TR0787.jpg" is invalid
@@ -386,3 +390,11 @@ cd /usr/local/nginx/sbin/
 ./nginx -s stop
 ./nginx -s quit
 ./nginx -s reload
+
+
+
+ERROR - file: client_func.c, line: 112, conf file "/etc/fdfs/mod_fastdfs.conf", host "tracker" is invalid
+/etc/fdfs/mod_fastdfs.conf
+配置文件中的tracker配置应该是ip+port
+
+ll /usr/local/include
