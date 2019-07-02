@@ -1,31 +1,27 @@
-#下载相关软件
-FastDFS作者GitHub地址：https://github.com/happyfish100
+# 下载相关软件
+> FastDFS作者GitHub地址：https://github.com/happyfish100
 
-1、libfastcommon
+1. libfastcommon
 https://github.com/happyfish100/libfastcommon/releases
-2、fastdfs
+1. fastdfs
 https://github.com/happyfish100/fastdfs/releases
-3、fastdfs-nginx-module
+1. fastdfs-nginx-module
 https://github.com/happyfish100/fastdfs-nginx-module/releases
-4、nginx
+1. nginx
 https://nginx.org/download/
 
-#本次安装使用的版本
-1、libfastcommon-1.0.36.tar
-2、fastdfs-5.11.tar.gz
-3、fastdfs-nginx-module-1.20.tar.gz
-4、nginx-1.12.0.tar.gz
+# 本次安装使用的版本
+1. libfastcommon-1.0.36.tar
+1. fastdfs-5.11.tar.gz
+1. fastdfs-nginx-module-1.20.tar.gz
+1. nginx-1.12.0.tar.gz
 
-#安装软件
-一、安装libfastcommon-1.0.36.tar
-1、解压文件
-tar zxf libfastcommon-1.0.36.tar.gz  
-2、进入文件目录 
-cd libfastcommon-1.0.36
-3、编译 
-./make.sh
-4、编译安装
-./make.sh install
+# 安装软件
+> 安装libfastcommon-1.0.36.tar
+1. 解压文件: tar zxf libfastcommon-1.0.36.tar.gz  
+1. 进入文件目录: cd libfastcommon-1.0.36
+1. 编译: ./make.sh
+1. 编译安装: ./make.sh install
 
 注意：
 编译时，需要gcc的支持，如果是最小化安装的系统，gcc默认不安装，当编译时候报错，提示：gcc: 未找到命令。此时需要自己安装gcc
@@ -306,8 +302,14 @@ make: *** [build] 错误 2
 ngx_module_incs="/usr/local/include"
 CORE_INCS="$CORE_INCS /usr/local/include"
 修改为：
-ngx_module_incs="/usr/local/include/fastdfs /usr/local/include/fastcommon/"
-CORE_INCS="$CORE_INCS /usr/local/include/fastdfs /usr/local/include/fastcommon/"
+ngx_module_incs="/usr/include/fastdfs /usr/include/fastcommon/"
+CORE_INCS="$CORE_INCS /usr/include/fastdfs /usr/include/fastcommon/"
+
+如果还是报错，就需要重新添加一下fastdfs-nginx-module,再次执行如下命令
+./configure --prefix=/usr/local/nginx --add-module=/software/fastdfs-nginx-module-1.20/src  #解压后fastdfs-nginx-module所在的位置
+然后
+make
+make install
 
 修改完成后，在进行编译安装即可。
 nginx的默认目录是/usr/local/nginx，安装成功后查看：
