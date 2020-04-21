@@ -8,6 +8,10 @@ docker run -p 27017:27017 -v /data/mongodb/db:/data/db --restart always --name m
 1. -v /data/mongodb/db:/data/db :将主机中/data/mongodb/db挂载到容器的/data/db，作为mongo数据存储目录
 1. -d mongo:3.6.13 运行容器 --auth 启动验证 -directoryperdb 目录方式存储
 
+> 进入服务
+```
+momgo
+```
 
 > 添加用户  
 ```
