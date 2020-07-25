@@ -130,3 +130,12 @@ docker import test.tar postgres:latest
 ## Dockerfile相关
 * From scratch  空白镜像
 * 每个RUN都是一层
+
+
+## 示例
+```
+docker run -p 6379:6379 -v /Users/dufei/dockerdata/redis/data:/data --name redis -d redis:5.0.4 redis-server --appendonly yes --requirepass "root"
+
+docker run -p 3306:3306 -v /Users/dufei/dockerdata/mysql/db:/var/lib/mysql -v /Users/dufei/dockerdata/mysql/conf:/etc/mysql -v /Users/dufei/dockerdata/mysql/logs:/var/log/mysql --name mysql  -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7 --character-set-server=utf8mb4 --collation_server=utf8mb4_general_ci --lower_case_table_names=1
+
+```
